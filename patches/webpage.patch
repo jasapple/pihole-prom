@@ -1,0 +1,35 @@
+--- ../pi-hole/advanced/Scripts/webpage.sh	2024-08-26 16:05:51.000000000 -0700
++++ webpage.sh	2024-08-25 19:42:22.000000000 -0700
+@@ -52,7 +52,8 @@
+   -i, interface                   Specify dnsmasq's interface listening behavior
+   -l, privacylevel                Set privacy level (0 = lowest, 3 = highest)
+   -t, teleporter                  Backup configuration as an archive
+-  -t, teleporter myname.tar.gz    Backup configuration to archive with name myname.tar.gz as specified"
++  -t, teleporter myname.tar.gz    Backup configuration to archive with name myname.tar.gz as specified
++  -m, metrics                     Toggle Metric Page"
+     exit 0
+ }
+ 
+@@ -846,6 +847,14 @@
+     fi
+ }
+ 
++SetMetricPage() {
++    state="false"
++    if [[ ! -z ${args[2]} ]]; then
++        state=${args[2]}
++    fi
++    addOrEditKeyValPair "${setupVars}" "METRIC_PAGE_ENABLE" "${state}"
++}
++
+ main() {
+     args=("$@")
+ 
+@@ -879,6 +888,7 @@
+         "addcustomcname"      ) AddCustomCNAMERecord;;
+         "removecustomcname"   ) RemoveCustomCNAMERecord;;
+         "ratelimit"           ) SetRateLimit;;
++        "-m" | "metrics"      ) SetMetricPage;;
+         *                     ) helpFunc;;
+     esac
+ 

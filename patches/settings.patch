@@ -1,0 +1,44 @@
+--- ../pihole-web/settings.php	2024-08-26 16:06:18.000000000 -0700
++++ settings.php	2024-08-25 19:44:02.000000000 -0700
+@@ -193,6 +193,12 @@
+     $queryLog = 'all';
+ }
+ 
++if (isset($setupVars['METRIC_PAGE_ENABLE'])) {
++    $metricPageEnabled = $setupVars['METRIC_PAGE_ENABLE'];
++} else {
++    $metricPageEnabled = false;
++}
++
+ ?>
+ 
+ <?php
+@@ -1100,7 +1106,6 @@
+                                             </div>
+                                         </div>
+                                     </div>
+-
+                                     <hr class="faint-border">
+ 
+                                     <div class="row">
+@@ -1252,6 +1257,20 @@
+                                                 </div>
+                                             </div>
+                                         </div>
++
++                                        <div class="row">
++                                            <div class="col-md-12">
++                                            <h4>Metric Page</h4>
++                                            </div>
++                                        </div>
++                                        <div class="row">
++                                            <div class="col-lg-6">
++                                                <div>
++                                                    <input type="checkbox" name="metricPageToggle" id="metricPageToggle" <?php if ($metricPageEnabled) { ?>checked<?php } ?>>
++                                                    <label for="metricPageToggle"><strong>Enable Metric Page</strong></label>
++                                                </div>
++                                            </div>
++                                        </div>
+                                     </div>
+                                     <div class="box-footer clearfix">
+                                         <input type="hidden" name="field" value="API">

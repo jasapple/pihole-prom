@@ -1,0 +1,32 @@
+--- ../pihole-web/scripts/pi-hole/php/savesettings.php	2024-08-26 16:06:18.000000000 -0700
++++ savesettings.php	2024-08-25 19:43:37.000000000 -0700
+@@ -402,18 +402,25 @@
+             // Set query log options
+             if (isset($_POST['querylog-permitted'], $_POST['querylog-blocked'])) {
+                 pihole_execute('-a setquerylog all');
+-                $success .= 'All entries will be shown in Query Log';
++                $success .= 'All entries will be shown in Query Log<br>';
+             } elseif (isset($_POST['querylog-permitted'])) {
+                 pihole_execute('-a setquerylog permittedonly');
+-                $success .= 'Only permitted will be shown in Query Log';
++                $success .= 'Only permitted will be shown in Query Log<br>';
+             } elseif (isset($_POST['querylog-blocked'])) {
+                 pihole_execute('-a setquerylog blockedonly');
+-                $success .= 'Only blocked entries will be shown in Query Log';
++                $success .= 'Only blocked entries will be shown in Query Log<br>';
+             } else {
+                 pihole_execute('-a setquerylog nothing');
+-                $success .= 'No entries will be shown in Query Log';
++                $success .= 'No entries will be shown in Query Log<br>';
+             }
+ 
++            if (isset($_POST['metricPageToggle'])) {
++                pihole_execute('-a metrics true');
++                $success .= 'Metric page Enabled';
++            } else {
++                pihole_execute('-a metrics false');
++                $success .= 'Metric page Disabled';
++            }
+             break;
+ 
+         case 'webUI':
