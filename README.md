@@ -6,15 +6,16 @@ Based off pi-hole/pi-hole [v5.18.3](https://github.com/pi-hole/pi-hole/releases/
 
 ## Installation
 
-`sudo ./instal.sh` This will install a patch to the following:
+`sudo ./install.sh` This will install a patch to the following:
 
  - /var/www/html/admin/
-    - metrics.php
-    - settings.php to
+    - settings.php
 - var/www/html/admin/scripts/pi-hole/php
     - savesettings.php 
 - /opt/pihole/
     - webpage.sh
+
+and add the new `metrics.php` to `/var/www/html/admin/`
 
 
 ## Prometheus Scrape config
