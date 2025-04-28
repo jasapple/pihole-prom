@@ -1,5 +1,7 @@
 <?php
 
+    header('Content-Type: text/plain');
+
     $api = true;
     require_once 'scripts/pi-hole/php/FTL.php';
     require_once 'scripts/pi-hole/php/gravity.php';
